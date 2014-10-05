@@ -1,0 +1,65 @@
+[
+    {
+        "category": "irc", 
+        "difficulty": 100, 
+        "pcap": "irc.pcapng", 
+        "question_text": "This is the first irc question", 
+        "answer_text": "42"
+    }, 
+    {
+        "category": "irc", 
+        "difficulty": 200, 
+        "pcap": "irc.pcapng", 
+        "question_text": "This is the second irc question", 
+        "answer_text": "42"
+    },
+    {
+        "category": "irc", 
+        "difficulty": 300, 
+        "pcap": "irc.pcapng", 
+        "question_text": "This is the third irc question", 
+        "answer_text": "42"
+    },
+    {
+        "category": "smtp", 
+        "difficulty": 100, 
+        "pcap": "smtp.pcapng", 
+        "question_text": "This is the first smtp  question", 
+        "answer_text": "42"
+    },
+    {
+        "category": "smtp", 
+        "difficulty": 200, 
+        "pcap": "smtp.pcapng", 
+        "question_text": "This is the second smtp  question", 
+        "answer_text": "42"
+    },
+    {
+        "category": "smtp", 
+        "difficulty": 300, 
+        "pcap": "smtp.pcapng", 
+        "question_text": "This is the third smtp  question", 
+        "answer_text": "42"
+    },
+    {
+        "category": "sip", 
+        "difficulty": 100, 
+        "pcap": "sip.pcapng", 
+        "question_text": "This is the first  sip  question", 
+        "answer_text": "42"
+    },
+    {
+        "category": "sip", 
+        "difficulty": 200, 
+        "pcap": "sip.pcapng", 
+        "question_text": "This is the second sip  question", 
+        "answer_text": "42"
+    },
+    {
+        "category": "sip", 
+        "difficulty": 300, 
+        "pcap": "sip.pcapng", 
+        "question_text": "This is the third sip  question", 
+        "answer_text": "42"
+    }
+]
