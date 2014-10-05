@@ -3,7 +3,9 @@ from django.template import Context, Template
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from models import Question, Pool,Category,Difficulty
-from pprint import pprint
+from pprint import pprint,pformat
+import json
+
 game_template = """<html><body>
  
 <h1 style="text-align:center"> {{ score }}
@@ -32,7 +34,13 @@ game_template = """<html><body>
   </tr>
 </table> 
 </body></html> """
-question_template = ""
+question_template = """<html><body> {{ question }}   
+
+
+
+
+
+</body></html>"""
 
 
 
@@ -74,18 +82,37 @@ def populate_db(request):
   difficulties = Difficulty.objects.all()
   return HttpResponse('done')
 
-import json
-from pprint import pprint
+def convert(input):
+    if isinstance(input, dict):
+        return {convert(key): convert(value) for key, value in input.iteritems()}
+    elif isinstance(input, list):
+        return [convert(element) for element in input]
+    elif isinstance(input, unicode):
+        return input.encode('utf-8')
+    else:
+        return input
  
 def populate_questions(request):
+#  pass
+#  return HttpResponse('done')
+  wipe = request.GET.get('wipe')
+  if wipe != None:
+    Question.objects.all().delete()
+    return HttpResponse("Wiped")
   if Question.objects.count() == 0:
+    error=list()
     with open('game/questions.json') as f:
-      for question in json.loads(f.read())
-        difficulty = Difficulty.objects.get(points=int(question['difficulty'])[0] 
-        category = Category.objects.get(name=question['category'])[0] 
+      for question in json.loads(f.read()):
+        question = convert(question)
+        error.append(question['answer_text'])
+        difficulty1 = Difficulty.objects.get(points = int(question['difficulty'])) 
+        error.append(difficulty1.points)
+        category1 = Category.objects.get(name = question['category']) 
+        q = Question(difficulty=difficulty1, answer_text=question['answer_text'], question_text=question['question_text'], category=category1, pcap=question['pcap'])
+        q.save()
+      return HttpResponse(pformat(error))
+#  else
+#    return HttpResponse("Questions already built")
 
-        category =
-      return HttpResponse(json.loads(f.read())[0]['question_text'])
-
-
+#def question()
 
