@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import Context, Template
 from django.http import HttpResponse
@@ -111,8 +112,21 @@ def populate_questions(request):
         q = Question(difficulty=difficulty1, answer_text=question['answer_text'], question_text=question['question_text'], category=category1, pcap=question['pcap'])
         q.save()
       return HttpResponse(pformat(error))
-#  else
-#    return HttpResponse("Questions already built")
+  else:
+    return HttpResponse("Questions already built")
+def random_record(records):
+  return records[random.randint(0,records.count()-1)
 
-#def question()
+def question(request):
+  if not  request.user.is_authenticated():  
+    return  HttpResponseRedirect('/')
+  user = request.user 
+  difficulty = request.GET.get('difficulty')
+  category  = request.GET.get('category')
+  if Pool.objects.filter(user=user).count() != 9:
+    Pool.objects.filter(user=user).delete()
+    for x in Category.objects:
+       for y in Difficulty.objects():
+    return HttpResponse('blba')
 
+  return HttpResponse(pformat(user.username))
